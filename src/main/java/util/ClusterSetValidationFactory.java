@@ -1,0 +1,16 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package util;
+
+import sandbox.clustering.ClusterSet;
+
+/**
+ *
+ * @author Nikolay
+ */
+public abstract class ClusterSetValidationFactory {
+
+    public abstract ClusterSetValidationMeasure getClusterSetValidationMeasure(ClusterSet cs);
+}
