@@ -68,7 +68,7 @@ public abstract class DatasetStub {
 
             @Override
             public String getFileName() {
-                return f.getName().endsWith(".fcs")?f.getName().substring(0, f.getName().length() - 4):f.getName();
+                return (f.getName().endsWith(".fcs"))?f.getName().substring(0, f.getName().length() - 4):f.getName();
             }
 
             @Override
@@ -146,7 +146,11 @@ public abstract class DatasetStub {
                 }
                 String[] names = Arrays.copyOfRange(headStringDelimited, 1, headStringDelimited.length);
                 for (int i = 0; i < names.length; i++) {
-                    names[i] = (names[i].contains(":")? names[i].split(":")[0]:names[i]).trim();
+                    if( names[i].contains("::") ){
+                        names[i] = names[i].split("::")[0].trim();
+                    }else{
+                        names[i] = (names[i].contains(":")? names[i].split(":")[0]:names[i]).trim();
+                    }
                 }
                 return names;
             }
@@ -173,7 +177,11 @@ public abstract class DatasetStub {
                 }
                 String[] names = Arrays.copyOfRange(headStringDelimited, 1, headStringDelimited.length);
                 for (int i = 0; i < names.length; i++) {
-                    names[i] = (names[i].contains(":")? names[i].split(":")[1]:names[i]).trim();
+                    if( names[i].contains("::") ){
+                        names[i] = names[i].split("::")[1].trim();
+                    }else {
+                        names[i] = (names[i].contains(":") ? names[i].split(":")[1] : names[i]).trim();
+                    }
                 }
                 return names;
             }
